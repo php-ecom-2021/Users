@@ -2,43 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-
-class User extends Authenticatable
+use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
+class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use Sortable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+        'name', 'age', 'email', 'comment'];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public $sortable = ['name', 'age', 'comment'];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+
 }
